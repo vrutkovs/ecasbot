@@ -584,6 +584,17 @@ class ASBot:
                                                      message.text))
 
                 # Removing messages from restricted members...
+                entities = self.__check_message_entities(message)
+                forward = self.__check_message_forward(message)
+                spam = self.__check_message_spam(message)
+                author_name = "{} - {} {}".format(message.from_user.id, message.from_user.first_name, message.from_user.last_name)
+
+                self.__logger.debug("author: {} ".format(author_name))
+                self.__logger.debug("message: {} ".format(message.text))
+                self.__logger.debug("entities: {}".format(entities))
+                self.__logger.debug("forward: {}".format(forward))
+                self.__logger.debug("spam: {}".format(spam))
+
                 if entities or forward or spam:
                     self.bot.delete_message(message.chat.id, message.message_id)
                     self.__logger.info(
