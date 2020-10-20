@@ -262,7 +262,7 @@ class ASBot:
                     try:
                         self.__logger.warning(
                             self.__get_lm('as_leavelg').format(message.from_user.first_name, message.from_user.id,
-                                                               message.from_user.title, leavereq.param))
+                                                               message.chat.title, leavereq.param))
                         self.__bot.leave_chat(leavereq.param)
                         self.__bot.send_message(message.chat.id, self.__get_lm('as_leaveok').format(leavereq.param))
                     except Exception:
